@@ -21,6 +21,7 @@ namespace ClockOnDesk
         {
             InitializeComponent();
             StartClock();
+            
         }
 
         private void StartClock()
@@ -46,6 +47,21 @@ namespace ClockOnDesk
             {
                 Date.Text = DateTime.Now.ToString("dd.MM.yyyy");
             }
+        }
+
+        public void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SettingWindow settingsWindow = new SettingWindow();
+            settingsWindow.Owner = this;
+            settingsWindow.ShowDialog();
         }
     }
 }

@@ -8,25 +8,49 @@
         Title="Settings" Height="150" Width="400"
         AllowsTransparency="True"
         WindowStyle="None"
-        Background="Transparent">
+        Background="Transparent"
+        ShowInTaskbar="False"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
-    <Grid Margin="0,-14,0,-10">
-        <TextBlock
-            Name="Time"
-            HorizontalAlignment="Left" Margin="0,0,0,75"
-            FontSize="60px" RenderTransformOrigin="0.543,0.637" Width="160"
-            Foreground="White">
-           
-            24:24
 
-        </TextBlock>
+    <Grid MouseLeftButtonDown="Window_MouseLeftButtonDown">
         <TextBlock
-            Name="Date"
-            HorizontalAlignment="Left" Margin="129,75,0,-13"
-            FontSize="55px"
-            Foreground="White">
-            
-            12.12.2000
+        Name="Time"
+        HorizontalAlignment="Left"
+        Margin="10,0,0,80"
+        FontSize="60"
+        Width="144"
+        Foreground="White"
+        IsHitTestVisible="False">
+        0000
         </TextBlock>
+
+        <TextBlock
+        Name="Date"
+        HorizontalAlignment="Left"
+        Margin="129,75,0,7"
+        FontSize="55"
+        Foreground="White"
+        IsHitTestVisible="False">
+        00.00.00
+        </TextBlock>
+
+        <Button
+        Width="40"
+        Height="40"
+        BorderThickness="0"
+        Background="Transparent"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Top"
+        Margin="0,10,10,0" 
+        Click="Button_Click">
+
+            <Image
+            Source="/Image/settings.png"
+            Width="25"
+            Height="34"/>
+
+        </Button>
+
     </Grid>
 </Window>
