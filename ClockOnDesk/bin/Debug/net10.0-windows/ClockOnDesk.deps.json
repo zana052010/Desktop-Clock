@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "ClockOnDesk/1.0.0": {
+        "runtime": {
+          "ClockOnDesk.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ClockOnDesk/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
