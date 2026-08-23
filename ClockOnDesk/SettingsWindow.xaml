@@ -5,11 +5,302 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClockOnDesk"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="400"
-        Background="Black">
+        WindowStyle="SingleBorderWindow"
+        AllowsTransparency="False"
+        Title="Settings"
+        Height="350"
+        Width="300"
+        Background="#121318">
+
+    <Window.Resources>
+
+        <!-- ====================================== -->
+        <!-- ОБЩИЙ STYLE ДЛЯ COMBOBOXITEM -->
+        <!-- ====================================== -->
+
+        <Style x:Key="NormalComboBoxItem"
+               TargetType="ComboBoxItem">
+
+            <Setter Property="Foreground"
+                    Value="#F5F5F7"/>
+
+            <Setter Property="Background"
+                    Value="#252833"/>
+
+            <Setter Property="Padding"
+                    Value="8,5"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+            <Style.Triggers>
+
+                <!-- Наведение мыши -->
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="#303442"/>
+
+                </Trigger>
+
+                <!-- Выбранный элемент -->
+                <Trigger Property="IsSelected"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="#7C5CFC"/>
+
+                    <Setter Property="Foreground"
+                            Value="White"/>
+
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+
+
+        <!-- ====================================== -->
+        <!-- STYLE ДЛЯ ЦВЕТОВ -->
+        <!-- ====================================== -->
+
+        <Style x:Key="ColorComboBoxItem"
+               TargetType="ComboBoxItem">
+
+            <Setter Property="Background"
+                    Value="#252833"/>
+
+            <Setter Property="Padding"
+                    Value="8,5"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+            <Style.Triggers>
+
+                <!-- Наведение -->
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="#303442"/>
+
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+
+
+        <!-- ====================================== -->
+        <!-- STYLE ДЛЯ COMBOBOX -->
+        <!-- ====================================== -->
+
+        <Style x:Key="SettingsComboBox"
+               TargetType="ComboBox">
+
+            <Setter Property="Width"
+                    Value="140"/>
+
+            <Setter Property="Height"
+                    Value="30"/>
+
+            <Setter Property="FontSize"
+                    Value="20"/>
+
+            <Setter Property="Background"
+                    Value="#252833"/>
+
+            <Setter Property="Foreground"
+                    Value="Black"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#7C5CFC"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+        </Style>
+
+    </Window.Resources>
+
+
+    <!-- ====================================== -->
+    <!-- ОСНОВНОЙ GRID -->
+    <!-- ====================================== -->
 
     <Grid>
-        <Image HorizontalAlignment="Left" Height="809" VerticalAlignment="Center" Width="842" RenderTransformOrigin="0.493,0.496" Source="/Image/background-settings.jpg" Margin="10,0,0,0"/>
+
+
+        <!-- ====================================== -->
+        <!-- CLOCK FONT -->
+        <!-- ====================================== -->
+
+        <TextBlock
+            Text="Clock Font"
+            Foreground="#F5F5F7"
+            FontSize="30"
+            FontStyle="Oblique"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Margin="0,20,0,0"/>
+
+
+        <!-- Выбор шрифта -->
+
+        <ComboBox
+            x:Name="FontComboBox"
+            Style="{StaticResource SettingsComboBox}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Margin="0,70,0,0"
+            SelectionChanged="FontComboBox_SelectionChanged">
+
+
+            <ComboBoxItem
+                Content="Arial"
+                FontFamily="Arial"
+                Style="{StaticResource NormalComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="Calibri"
+                FontFamily="Calibri"
+                Style="{StaticResource NormalComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="Consolas"
+                FontFamily="Consolas"
+                Style="{StaticResource NormalComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="Times New Roman"
+                FontFamily="Times New Roman"
+                Style="{StaticResource NormalComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="Segoe UI"
+                FontFamily="Segoe UI"
+                Style="{StaticResource NormalComboBoxItem}"/>
+
+        </ComboBox>
+
+
+        <!-- ====================================== -->
+        <!-- SIZE FONT -->
+        <!-- ====================================== -->
+
+        <TextBlock
+            Text="Size Font"
+            Foreground="#F5F5F7"
+            FontSize="30"
+            FontStyle="Oblique"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Margin="0,115,0,0"/>
+
+
+        <!-- Выбор размера -->
+
+        <ComboBox
+            x:Name="FontComboBoxSize"
+            Style="{StaticResource SettingsComboBox}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Margin="0,165,0,0"
+            SelectionChanged="FontComboBox_SelectionChangeSize">
+
+
+            <ComboBoxItem
+                Content="40"
+                Style="{StaticResource NormalComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="50"
+                Style="{StaticResource NormalComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="60"
+                Style="{StaticResource NormalComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="70"
+                Style="{StaticResource NormalComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="80"
+                Style="{StaticResource NormalComboBoxItem}"/>
+
+        </ComboBox>
+
+
+        <!-- ====================================== -->
+        <!-- FONT COLOR -->
+        <!-- ====================================== -->
+
+        <TextBlock
+            Text="Font Color"
+            Foreground="#F5F5F7"
+            FontSize="30"
+            FontStyle="Oblique"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Margin="0,210,0,0"/>
+
+
+        <!-- Выбор цвета -->
+
+        <ComboBox
+            x:Name="FontComboBoxColor"
+            Style="{StaticResource SettingsComboBox}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Margin="0,260,0,0"
+            SelectionChanged="FontComboBox_SelectionChangedColor">
+
+
+            <ComboBoxItem
+                Content="Black"
+                Foreground="Black"
+                Style="{StaticResource ColorComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="White"
+                Foreground="White"
+                Style="{StaticResource ColorComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="Red"
+                Foreground="Red"
+                Style="{StaticResource ColorComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="Orange"
+                Foreground="Orange"
+                Style="{StaticResource ColorComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="Purple"
+                Foreground="Purple"
+                Style="{StaticResource ColorComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="Pink"
+                Foreground="Pink"
+                Style="{StaticResource ColorComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="Yellow"
+                Foreground="Yellow"
+                Style="{StaticResource ColorComboBoxItem}"/>
+
+            <ComboBoxItem
+                Content="Green"
+                Foreground="Green"
+                Style="{StaticResource ColorComboBoxItem}"/>
+
+        </ComboBox>
 
     </Grid>
+
 </Window>

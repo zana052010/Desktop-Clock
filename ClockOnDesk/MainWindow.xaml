@@ -5,34 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClockOnDesk"
         mc:Ignorable="d"
-        Title="Settings" Height="150" Width="400"
+        Title="Settings" Height="428" Width="634"
         AllowsTransparency="True"
         WindowStyle="None"
         Background="Transparent"
         ShowInTaskbar="False"
+        Opacity="0.97"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
 
-    <Grid MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Grid Margin="0,0,10,0" Opacity="1" MouseLeftButtonDown="Window_MouseLeftButtonDown">
         <TextBlock
         Name="Time"
         HorizontalAlignment="Left"
-        Margin="10,0,0,80"
+        Margin="181,29,0,136"
         FontSize="60"
-        Width="144"
+        Width="233"
         Foreground="White"
         IsHitTestVisible="False">
-        0000
         </TextBlock>
 
         <TextBlock
         Name="Date"
         HorizontalAlignment="Left"
-        Margin="129,75,0,7"
+        Margin="181,124,0,28"
         FontSize="55"
         Foreground="White"
-        IsHitTestVisible="False">
-        00.00.00
+        IsHitTestVisible="False" 
+        Width="443">
+            0000
         </TextBlock>
 
         <Button
@@ -42,15 +44,13 @@
         Background="Transparent"
         HorizontalAlignment="Right"
         VerticalAlignment="Top"
-        Margin="0,10,10,0" 
+        Margin="0,79,97,0" 
         Click="Button_Click">
-
             <Image
             Source="/Image/settings.png"
-            Width="25"
-            Height="34"/>
+            Width="34"
+            Height="34" Opacity="0.5"/>
 
         </Button>
-
     </Grid>
 </Window>

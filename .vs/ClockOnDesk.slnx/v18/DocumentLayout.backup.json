@@ -3,15 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B898A4FF-3DBF-AE6F-6D89-D906842092F2}|ClockOnDesk\\ClockOnDesk.csproj|c:\\users\\zana\\source\\repos\\clockondesk\\clockondesk\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B898A4FF-3DBF-AE6F-6D89-D906842092F2}|ClockOnDesk\\ClockOnDesk.csproj|solutionrelative:clockondesk\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B898A4FF-3DBF-AE6F-6D89-D906842092F2}|ClockOnDesk\\ClockOnDesk.csproj|c:\\users\\zana\\source\\repos\\clockondesk\\clockondesk\\settingswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{B898A4FF-3DBF-AE6F-6D89-D906842092F2}|ClockOnDesk\\ClockOnDesk.csproj|solutionrelative:clockondesk\\settingswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B898A4FF-3DBF-AE6F-6D89-D906842092F2}|ClockOnDesk\\ClockOnDesk.csproj|c:\\users\\zana\\source\\repos\\clockondesk\\clockondesk\\settingswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B898A4FF-3DBF-AE6F-6D89-D906842092F2}|ClockOnDesk\\ClockOnDesk.csproj|solutionrelative:clockondesk\\settingswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\zana\\AppData\\Local\\Temp\\.vsdbgsrc\\dc70da5d7d10564f1d1dec501844ec5f935b94147b2c45371723367d6a81cc87\\Window.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B898A4FF-3DBF-AE6F-6D89-D906842092F2}|ClockOnDesk\\ClockOnDesk.csproj|c:\\users\\zana\\source\\repos\\clockondesk\\clockondesk\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,40 +31,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "ClockOnDesk\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\MainWindow.xaml*",
+              "RelativeToolTip": "ClockOnDesk\\MainWindow.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-08-23T09:29:10.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "SettingsWindow.xaml",
               "DocumentMoniker": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\SettingsWindow.xaml",
               "RelativeDocumentMoniker": "ClockOnDesk\\SettingsWindow.xaml",
               "ToolTip": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\SettingsWindow.xaml",
               "RelativeToolTip": "ClockOnDesk\\SettingsWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-08-22T19:55:15.595Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SettingsWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\SettingsWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ClockOnDesk\\SettingsWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\SettingsWindow.xaml.cs",
-              "RelativeToolTip": "ClockOnDesk\\SettingsWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-22T19:00:47.235Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Window.cs",
-              "DocumentMoniker": "C:\\Users\\zana\\AppData\\Local\\Temp\\.vsdbgsrc\\dc70da5d7d10564f1d1dec501844ec5f935b94147b2c45371723367d6a81cc87\\Window.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\dc70da5d7d10564f1d1dec501844ec5f935b94147b2c45371723367d6a81cc87\\Window.cs",
-              "ToolTip": "C:\\Users\\zana\\AppData\\Local\\Temp\\.vsdbgsrc\\dc70da5d7d10564f1d1dec501844ec5f935b94147b2c45371723367d6a81cc87\\Window.cs",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\dc70da5d7d10564f1d1dec501844ec5f935b94147b2c45371723367d6a81cc87\\Window.cs",
-              "ViewState": "AgIAAAgSAAAAAAAAAAAtwGkSAAAvAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-22T17:17:11.401Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-22T19:55:15.595Z"
             },
             {
               "$type": "Document",
@@ -73,10 +59,21 @@
               "RelativeDocumentMoniker": "ClockOnDesk\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\MainWindow.xaml.cs",
               "RelativeToolTip": "ClockOnDesk\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-22T16:44:03.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-23T09:37:38.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SettingsWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\SettingsWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ClockOnDesk\\SettingsWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\SettingsWindow.xaml.cs",
+              "RelativeToolTip": "ClockOnDesk\\SettingsWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAUwCQAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T19:00:47.235Z"
             }
           ]
         }

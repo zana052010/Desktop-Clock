@@ -1,0 +1,5 @@
+C:\Users\zana\Desktop\Новая папка\ClockOnDesk.exe
+C:\Users\zana\Desktop\Новая папка\ClockOnDesk.dll
+C:\Users\zana\Desktop\Новая папка\ClockOnDesk.deps.json
+C:\Users\zana\Desktop\Новая папка\ClockOnDesk.runtimeconfig.json
+C:\Users\zana\Desktop\Новая папка\ClockOnDesk.pdb

@@ -15,9 +15,46 @@ namespace ClockOnDesk
 
     public partial class SettingWindow : Window
     {
+        private void FontComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FontComboBox.SelectedItem is ComboBoxItem item)
+            {
+                string font = item.Content.ToString();
+
+                MainWindow mainWindow = (MainWindow)Owner;
+
+                mainWindow.ChangeFont(font);
+            }
+        }
+        private void FontComboBox_SelectionChangeSize(object sender, SelectionChangedEventArgs e)
+        {
+            if (FontComboBoxSize.SelectedItem is ComboBoxItem item)
+            {
+                if (double.TryParse(item.Content.ToString(), out double size))
+                {
+                    MainWindow mainWindow = (MainWindow)Owner;
+
+                    mainWindow.ChangeFontSize(size);
+                }
+            }
+        }
+        private void FontComboBox_SelectionChangedColor(object sender, SelectionChangedEventArgs e)
+        {
+            if (FontComboBoxColor.SelectedItem is ComboBoxItem item)
+            {
+                string color = item.Content.ToString();
+
+                MainWindow mainWindow = (MainWindow)Owner;
+
+                mainWindow.ChangeFontColor(color);
+            }
+        }
+
         public SettingWindow()
         {
             InitializeComponent();
         }
+
+
     }
 }
