@@ -1,129 +1,165 @@
-﻿
-using System.Drawing.Printing;
+﻿using System;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Windows.Xps.Serialization;
 
 namespace ClockOnDesk
 {
     public partial class MainWindow : Window
     {
+        private DispatcherTimer _clockTimer;
+        private DispatcherTimer _saveDebounceTimer;
 
-        private DispatcherTimer _timer;
-        public string SelectedFont { get; set; }
-        public int SelectedFontSize { get; set; }
-        public string SelectedFontColor { get; set; }
-                                    //################
+        //################
         //##############################################################################
 
         private const int GWL_EXSTYLE = -20;
         private const int WS_EX_TOOLWINDOW = 0x00000080;
         private const int WS_EX_APPWINDOW = 0x00040000;
 
-        [DllImport("user32.dll")]
-        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern IntPtr GetWindowLongPtr(IntPtr hWnd, int nIndex);
 
-        [DllImport("user32.dll")]
-        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern IntPtr SetWindowLongPtr(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
 
         //##############################################################################
-                                    //################
+        //################
+
         public MainWindow()
         {
             InitializeComponent();
-            StartClock();
-            LocationChanged += (_, _) => SetPositionWindow();
-            SizeChanged += (_, _) => SetPositionWindow();
+
             SetSettings();
-            SetPositionWindow();
-                            //################
+
+            LocationChanged += (_, _) => ScheduleSavePosition();
+            SizeChanged += (_, _) => ScheduleSavePosition();
+            Closing += (_, _) => SavePositionImmediate();
+            Closing += MainWindow_Closing;
+
+            StartClock();
+            SetPositionWindowInBounds();
+
+            //################
             //###################################################
             Loaded += (_, _) =>
             {
                 var hwnd = new WindowInteropHelper(this).Handle;
 
-                int style = GetWindowLong(hwnd, GWL_EXSTYLE);
+                IntPtr style = GetWindowLongPtr(hwnd, GWL_EXSTYLE);
+                long styleValue = style.ToInt64();
 
-                style &= ~WS_EX_APPWINDOW;
-                style |= WS_EX_TOOLWINDOW;
+                styleValue &= ~WS_EX_APPWINDOW;
+                styleValue |= WS_EX_TOOLWINDOW;
 
-                SetWindowLong(hwnd, GWL_EXSTYLE, style);
+                SetWindowLongPtr(hwnd, GWL_EXSTYLE, new IntPtr(styleValue));
             };
             //###################################################
-                            //################
+            //################
         }
+
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
 
         public void SetSettings()
         {
-            
-            Time.FontSize = Properties.Settings.Default.FontSize;
-            Date.FontSize = Properties.Settings.Default.FontSize / 3;
-
-            
-            string colorString = Properties.Settings.Default.FontColor;
-
-            Color color;
-
             try
             {
-                color = (Color)ColorConverter.ConvertFromString(colorString);
-            }
-            catch
-            {
-                color = Colors.White;
+                Time.FontSize = Properties.Settings.Default.FontSize;
+                Time.Foreground = ParseBrushSafe(Properties.Settings.Default.FontColor);
+                Time.FontFamily = new FontFamily(Properties.Settings.Default.Font);
 
-                Properties.Settings.Default.FontColor = color.ToString();
-                Properties.Settings.Default.Save();
-            }
+                Date.FontSize = Properties.Settings.Default.FontSize / 3;
+                Date.Foreground = ParseBrushSafe(Properties.Settings.Default.FontColor);
+                Date.FontFamily = new FontFamily(Properties.Settings.Default.Font);
 
-            Brush brush = new SolidColorBrush(color);
-
-            Time.Foreground = brush;
-            Date.Foreground = brush;
-            string font = Properties.Settings.Default.Font;
-
-            if (string.IsNullOrWhiteSpace(font))
-                font = "Arial";
-
-            Time.FontFamily = new FontFamily(font);
-            Date.FontFamily = new FontFamily(font);
-            try
-            {
                 this.Left = Properties.SettingsPosition.Default.Left;
                 this.Top = Properties.SettingsPosition.Default.Top;
-                this.Width = Properties.SettingsPosition.Default.Width;
-                this.Height = Properties.SettingsPosition.Default.Height;
+                
+
             }
-            catch
+            catch (Exception ex)
             {
-                this.Left = 100;
-                this.Top = 100;
-                this.Width = 300;
-                this.Height = 150;
+                // Настройки повреждены/некорректны — используем значения по умолчанию,
+                // но не роняем приложение
+                System.Diagnostics.Debug.WriteLine($"SetSettings error: {ex.Message}");
             }
         }
 
+        /// <summary>
+        /// Безопасное преобразование строки в цвет. При ошибке возвращает белый цвет.
+        /// </summary>
+        private Brush ParseBrushSafe(string color)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(color))
+                    return Brushes.White;
 
+                return new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
+            }
+            catch
+            {
+                return Brushes.White;
+            }
+        }
 
-        public void SetPositionWindow()
+        /// <summary>
+        /// Проверка размеров/позиции окна перед первым отображением
+        /// (защита от отрицательных/мусорных значений после сворачивания и т.п.)
+        /// </summary>
+        private void SetPositionWindowInBounds()
+        {
+            if (Width <= 0) Width = 300;
+            if (Height <= 0) Height = 100;
+
+            SavePositionImmediate();
+        }
+
+        /// <summary>
+        /// Откладывает сохранение позиции окна, чтобы не писать в файл настроек
+        /// на каждый пиксель при перетаскивании/ресайзе.
+        /// </summary>
+        private void ScheduleSavePosition()
+        {
+            // Игнорируем "мусорные" значения при сворачивании окна
+            if (WindowState == WindowState.Minimized)
+                return;
+
+            if (Width <= 0 || Height <= 0)
+                return;
+
+            if (_saveDebounceTimer == null)
+            {
+                _saveDebounceTimer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromMilliseconds(500)
+                };
+                _saveDebounceTimer.Tick += (_, _) =>
+                {
+                    _saveDebounceTimer.Stop();
+                    SavePositionImmediate();
+                };
+            }
+
+            _saveDebounceTimer.Stop();
+            _saveDebounceTimer.Start();
+        }
+
+        private void SavePositionImmediate()
         {
             Properties.SettingsPosition.Default.Left = Left;
             Properties.SettingsPosition.Default.Top = Top;
             Properties.SettingsPosition.Default.Width = Width;
             Properties.SettingsPosition.Default.Height = Height;
             Properties.SettingsPosition.Default.Save();
-            
         }
 
         public void ChangeFontSize(double size)
@@ -133,6 +169,7 @@ namespace ClockOnDesk
 
             Time.FontSize = size;
             ReworkChangeFontSize(size, Date);
+
             Properties.Settings.Default.FontSize = size;
             Properties.Settings.Default.Save();
         }
@@ -147,29 +184,22 @@ namespace ClockOnDesk
             if (string.IsNullOrWhiteSpace(color))
                 return;
 
+            Brush brush;
             try
             {
-                Color parsedColor =
-                    (Color)ColorConverter.ConvertFromString(color);
-
-                Brush brush = new SolidColorBrush(parsedColor);
-
-                Time.Foreground = brush;
-                Date.Foreground = brush;
-
-                Properties.Settings.Default.FontColor =
-                    parsedColor.ToString();
-
-                Properties.Settings.Default.Save();
+                brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
             }
-            catch (FormatException)
+            catch
             {
-                MessageBox.Show(
-                    $"{color}",
-                    "Error",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+                // Некорректная строка цвета — просто игнорируем изменение
+                return;
             }
+
+            Time.Foreground = brush;
+            Date.Foreground = brush;
+
+            Properties.Settings.Default.FontColor = color;
+            Properties.Settings.Default.Save();
         }
 
         public void ChangeFont(string font)
@@ -179,45 +209,45 @@ namespace ClockOnDesk
 
             Time.FontFamily = new FontFamily(font);
             Date.FontFamily = new FontFamily(font);
+
             Properties.Settings.Default.Font = font;
             Properties.Settings.Default.Save();
         }
 
-
-
         private void StartClock()
         {
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1);
-            _timer.Tick += Timer_Tick_For_Date;
-            _timer.Tick += Timer_Tick_For_Days;
-            _timer.Start();
+            _clockTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
+            _clockTimer.Tick += Timer_Tick_UpdateClock;
+            _clockTimer.Start();
+
+            // Обновляем сразу при запуске, не дожидаясь первого тика
+            Timer_Tick_UpdateClock(null, EventArgs.Empty);
         }
 
-        private void Timer_Tick_For_Date(object sender, EventArgs e)
+        private void Timer_Tick_UpdateClock(object sender, EventArgs e)
         {
-       
-                //ChangeFont(Date, SelectedFont);
+            var now = DateTime.Now;
+
             if (Time != null)
             {
-                Time.Text = DateTime.Now.ToString("HH:mm");
+                Time.Text = now.ToString("HH:mm");
             }
-        }
-        private void Timer_Tick_For_Days(object sender, EventArgs e)
-        {
-     
-            if (Time != null)
+
+            if (Date != null)
             {
-                Date.Text = DateTime.Now.ToString("dd.MM.yy");
+                Date.Text = now.ToString("dd.MM.yy");
             }
         }
-
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SettingWindow settingsWindow = new SettingWindow();
-            settingsWindow.Owner = this;
+            var settingsWindow = new SettingWindow
+            {
+                Owner = this
+            };
             settingsWindow.ShowDialog();
         }
 
@@ -229,7 +259,5 @@ namespace ClockOnDesk
                 this.DragMove();
             }
         }
-
-
     }
 }

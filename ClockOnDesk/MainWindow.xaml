@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:ClockOnDesk"
         mc:Ignorable="d"
         Title="Settings"
-        Height="428"
-        Width="634"
+        Height="333"
+        Width="373"
         AllowsTransparency="True"
         WindowStyle="None"
         Background="Transparent"
@@ -15,16 +15,13 @@
         Opacity="0.97"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
-    <Grid MouseLeftButtonDown="Window_MouseLeftButtonDown">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="545*"/>
-            <ColumnDefinition Width="89*"/>
-        </Grid.ColumnDefinitions>
+    <Grid MouseLeftButtonDown="Window_MouseLeftButtonDown" Margin="0,10,10,-20" RenderTransformOrigin="0.504,0.479">
+
 
 
         <StackPanel
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center" Margin="246,0,0,0">
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top" Height="auto" Width="auto" Margin="0,36,0,0">
 
             <TextBlock
                 Name="Time"
@@ -32,7 +29,7 @@
                 FontSize="60"
                 Foreground="White"
                 HorizontalAlignment="Center"
-                IsHitTestVisible="False"/>
+                IsHitTestVisible="False" Width="auto" Height="auto"/>
 
             <TextBlock
                 Name="Date"
@@ -41,7 +38,7 @@
                 Foreground="White"
                 HorizontalAlignment="Center"
                 IsHitTestVisible="False"
-                Margin="0,5,0,0"/>
+                Margin="0,5,0,0" Height="41"/>
             <Button
                 Width="40"
                 Height="40"
