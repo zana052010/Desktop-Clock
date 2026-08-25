@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\ClockOnDesk.csproj",
+      "projectUniqueName": "C:\\Users\\zana\\Documents\\Desktop-Clock\\ClockOnDesk\\ClockOnDesk.csproj",
       "projectName": "ClockOnDesk",
-      "projectPath": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\ClockOnDesk.csproj",
+      "projectPath": "C:\\Users\\zana\\Documents\\Desktop-Clock\\ClockOnDesk\\ClockOnDesk.csproj",
       "packagesPath": "C:\\Users\\zana\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zana\\source\\repos\\ClockOnDesk\\ClockOnDesk\\obj\\",
+      "outputPath": "C:\\Users\\zana\\Documents\\Desktop-Clock\\ClockOnDesk\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\zana\source\repos\ClockOnDesk\ClockOnDesk\obj\Debug\net10.0-windows\
+C:\Users\zana\Documents\Desktop-Clock\ClockOnDesk\obj\Debug\net10.0-windows\
 ClockOnDesk
 none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-C:\Users\zana\source\repos\ClockOnDesk\ClockOnDesk\App.xaml
+C:\Users\zana\Documents\Desktop-Clock\ClockOnDesk\App.xaml
 2-2121854466
 
-7-1565086704
+9-622910591
 206890450207
 MainWindow.xaml;SettingsWindow.xaml;
 
-True
+False
 

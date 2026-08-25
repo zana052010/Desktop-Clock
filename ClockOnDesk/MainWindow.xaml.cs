@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿
+using System.Drawing.Printing;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Windows.Xps.Serialization;
 
 namespace ClockOnDesk
 {
@@ -40,6 +43,10 @@ namespace ClockOnDesk
         {
             InitializeComponent();
             StartClock();
+            LocationChanged += (_, _) => SetPositionWindow();
+            SizeChanged += (_, _) => SetPositionWindow();
+            SetSettings();
+            SetPositionWindow();
                             //################
             //###################################################
             Loaded += (_, _) =>
@@ -57,8 +64,35 @@ namespace ClockOnDesk
                             //################
         }
 
+        public void SetSettings()
+        {
+            Time.FontSize = Properties.Settings.Default.FontSize;
+            Time.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Properties.Settings.Default.FontColor));
+            Time.FontFamily = new FontFamily(Properties.Settings.Default.Font);
+           
 
+            Date.FontSize = Properties.Settings.Default.FontSize / 3;
+            Date.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Properties.Settings.Default.FontColor));
+            Date.FontFamily = new FontFamily(Properties.Settings.Default.Font);
 
+            this.Left = Properties.SettingsPosition.Default.Left;
+            this.Top = Properties.SettingsPosition.Default.Top;
+            this.Width = Properties.SettingsPosition.Default.Width;
+            this.Height = Properties.SettingsPosition.Default.Height;
+
+        }
+
+        
+
+        public void SetPositionWindow()
+        {
+            Properties.SettingsPosition.Default.Left = Left;
+            Properties.SettingsPosition.Default.Top = Top;
+            Properties.SettingsPosition.Default.Width = Width;
+            Properties.SettingsPosition.Default.Height = Height;
+            Properties.SettingsPosition.Default.Save();
+            
+        }
 
         public void ChangeFontSize(double size)
         {
@@ -66,26 +100,32 @@ namespace ClockOnDesk
                 return;
 
             Time.FontSize = size;
-            Date.FontSize = size;
+            ReworkChangeFontSize(size, Date);
+            Properties.Settings.Default.FontSize = size;
+            Properties.Settings.Default.Save();
+        }
+
+        public void ReworkChangeFontSize(double size, TextBlock text)
+        {
+            text.FontSize = size / 3;
         }
 
         public void ChangeFontColor(string color)
         {
             if (string.IsNullOrWhiteSpace(color))
                 return;
+           
+            Brush brush = new SolidColorBrush(
+                (Color)ColorConverter.ConvertFromString(color));
 
-            try
-            {
-                Brush brush = new SolidColorBrush(
-                    (Color)ColorConverter.ConvertFromString(color));
+            Time.Foreground = brush;
+            Date.Foreground = brush;
+            Properties.Settings.Default.FontColor = color;
+            Properties.Settings.Default.Save();
 
-                Time.Foreground = brush;
-                Date.Foreground = brush;
-            }
-            catch
-            {
-               
-            }
+
+
+
         }
 
         public void ChangeFont(string font)
@@ -95,6 +135,8 @@ namespace ClockOnDesk
 
             Time.FontFamily = new FontFamily(font);
             Date.FontFamily = new FontFamily(font);
+            Properties.Settings.Default.Font = font;
+            Properties.Settings.Default.Save();
         }
 
 
@@ -122,7 +164,7 @@ namespace ClockOnDesk
      
             if (Time != null)
             {
-                Date.Text = DateTime.Now.ToString("dd.MM.yyyy");
+                Date.Text = DateTime.Now.ToString("dd.MM.yy");
             }
         }
 

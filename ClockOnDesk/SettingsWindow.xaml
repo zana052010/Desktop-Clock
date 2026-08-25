@@ -230,6 +230,14 @@
             <ComboBoxItem
                 Content="80"
                 Style="{StaticResource NormalComboBoxItem}"/>
+            
+            <ComboBoxItem
+                Content="90"
+                Style="{StaticResource NormalComboBoxItem}"/>
+            
+            <ComboBoxItem
+                Content="100"
+                Style="{StaticResource NormalComboBoxItem}"/>
 
         </ComboBox>
 

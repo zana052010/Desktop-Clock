@@ -34,7 +34,7 @@ namespace ClockOnDesk
                 {
                     MainWindow mainWindow = (MainWindow)Owner;
 
-                    mainWindow.ChangeFontSize(size);
+                    mainWindow.ChangeFontSize(size + 10);
                 }
             }
         }
