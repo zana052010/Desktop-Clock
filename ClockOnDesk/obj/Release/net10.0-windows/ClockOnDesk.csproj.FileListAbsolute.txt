@@ -44,3 +44,4 @@ C:\Users\zana\Documents\Desktop-Clock\ClockOnDesk\obj\Release\net10.0-windows\re
 C:\Users\zana\Documents\Desktop-Clock\ClockOnDesk\obj\Release\net10.0-windows\ClockOnDesk.pdb
 C:\Users\zana\Documents\Desktop-Clock\ClockOnDesk\obj\Release\net10.0-windows\ClockOnDesk.genruntimeconfig.cache
 C:\Users\zana\Documents\Desktop-Clock\ClockOnDesk\obj\Release\net10.0-windows\ref\ClockOnDesk.dll
+C:\Users\zana\Documents\Desktop-Clock\ClockOnDesk\bin\Release\net10.0-windows\ClockOnDesk.dll.config

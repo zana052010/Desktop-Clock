@@ -66,23 +66,55 @@ namespace ClockOnDesk
 
         public void SetSettings()
         {
+            
             Time.FontSize = Properties.Settings.Default.FontSize;
-            Time.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Properties.Settings.Default.FontColor));
-            Time.FontFamily = new FontFamily(Properties.Settings.Default.Font);
-           
-
             Date.FontSize = Properties.Settings.Default.FontSize / 3;
-            Date.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Properties.Settings.Default.FontColor));
-            Date.FontFamily = new FontFamily(Properties.Settings.Default.Font);
 
-            this.Left = Properties.SettingsPosition.Default.Left;
-            this.Top = Properties.SettingsPosition.Default.Top;
-            this.Width = Properties.SettingsPosition.Default.Width;
-            this.Height = Properties.SettingsPosition.Default.Height;
+            
+            string colorString = Properties.Settings.Default.FontColor;
 
+            Color color;
+
+            try
+            {
+                color = (Color)ColorConverter.ConvertFromString(colorString);
+            }
+            catch
+            {
+                color = Colors.White;
+
+                Properties.Settings.Default.FontColor = color.ToString();
+                Properties.Settings.Default.Save();
+            }
+
+            Brush brush = new SolidColorBrush(color);
+
+            Time.Foreground = brush;
+            Date.Foreground = brush;
+            string font = Properties.Settings.Default.Font;
+
+            if (string.IsNullOrWhiteSpace(font))
+                font = "Arial";
+
+            Time.FontFamily = new FontFamily(font);
+            Date.FontFamily = new FontFamily(font);
+            try
+            {
+                this.Left = Properties.SettingsPosition.Default.Left;
+                this.Top = Properties.SettingsPosition.Default.Top;
+                this.Width = Properties.SettingsPosition.Default.Width;
+                this.Height = Properties.SettingsPosition.Default.Height;
+            }
+            catch
+            {
+                this.Left = 100;
+                this.Top = 100;
+                this.Width = 300;
+                this.Height = 150;
+            }
         }
 
-        
+
 
         public void SetPositionWindow()
         {
@@ -114,18 +146,30 @@ namespace ClockOnDesk
         {
             if (string.IsNullOrWhiteSpace(color))
                 return;
-           
-            Brush brush = new SolidColorBrush(
-                (Color)ColorConverter.ConvertFromString(color));
 
-            Time.Foreground = brush;
-            Date.Foreground = brush;
-            Properties.Settings.Default.FontColor = color;
-            Properties.Settings.Default.Save();
+            try
+            {
+                Color parsedColor =
+                    (Color)ColorConverter.ConvertFromString(color);
 
+                Brush brush = new SolidColorBrush(parsedColor);
 
+                Time.Foreground = brush;
+                Date.Foreground = brush;
 
+                Properties.Settings.Default.FontColor =
+                    parsedColor.ToString();
 
+                Properties.Settings.Default.Save();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show(
+                    $"{color}",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+            }
         }
 
         public void ChangeFont(string font)
