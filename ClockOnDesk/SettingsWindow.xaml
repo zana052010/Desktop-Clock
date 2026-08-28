@@ -14,9 +14,9 @@
 
     <Window.Resources>
 
-        <!-- ====================================== -->
-        <!-- ОБЩИЙ STYLE ДЛЯ COMBOBOXITEM -->
-        <!-- ====================================== -->
+        <!-- ============================== -->
+        <!-- COMBOBOX ITEM -->
+        <!-- ============================== -->
 
         <Style x:Key="NormalComboBoxItem"
                TargetType="ComboBoxItem">
@@ -35,7 +35,6 @@
 
             <Style.Triggers>
 
-                <!-- Наведение мыши -->
                 <Trigger Property="IsMouseOver"
                          Value="True">
 
@@ -44,7 +43,6 @@
 
                 </Trigger>
 
-                <!-- Выбранный элемент -->
                 <Trigger Property="IsSelected"
                          Value="True">
 
@@ -61,9 +59,9 @@
         </Style>
 
 
-        <!-- ====================================== -->
-        <!-- STYLE ДЛЯ ЦВЕТОВ -->
-        <!-- ====================================== -->
+        <!-- ============================== -->
+        <!-- COLOR COMBOBOX ITEM -->
+        <!-- ============================== -->
 
         <Style x:Key="ColorComboBoxItem"
                TargetType="ComboBoxItem">
@@ -79,7 +77,6 @@
 
             <Style.Triggers>
 
-                <!-- Наведение -->
                 <Trigger Property="IsMouseOver"
                          Value="True">
 
@@ -93,21 +90,21 @@
         </Style>
 
 
-        <!-- ====================================== -->
-        <!-- STYLE ДЛЯ COMBOBOX -->
-        <!-- ====================================== -->
+        <!-- ============================== -->
+        <!-- COMBOBOX -->
+        <!-- ============================== -->
 
         <Style x:Key="SettingsComboBox"
                TargetType="ComboBox">
 
             <Setter Property="Width"
-                    Value="140"/>
+                    Value="120"/>
 
             <Setter Property="Height"
-                    Value="30"/>
+                    Value="24"/>
 
             <Setter Property="FontSize"
-                    Value="20"/>
+                    Value="10"/>
 
             <Setter Property="Background"
                     Value="#252833"/>
@@ -126,189 +123,220 @@
     </Window.Resources>
 
 
-    <!-- ====================================== -->
-    <!-- ОСНОВНОЙ GRID -->
-    <!-- ====================================== -->
+    <!-- ============================== -->
+    <!-- ОСНОВНОЙ КОНТЕЙНЕР -->
+    <!-- ============================== -->
 
-    <Grid>
+    <Border Padding="20">
 
-
-        <!-- ====================================== -->
-        <!-- CLOCK FONT -->
-        <!-- ====================================== -->
-
-        <TextBlock
-            Text="Clock Font"
-            Foreground="#F5F5F7"
-            FontSize="30"
-            FontStyle="Oblique"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Margin="0,20,0,0"/>
+        <StackPanel>
 
 
-        <!-- Выбор шрифта -->
+            <!-- ============================== -->
+            <!-- CLOCK FONT -->
+            <!-- ============================== -->
 
-        <ComboBox
-            x:Name="FontComboBox"
-            Style="{StaticResource SettingsComboBox}"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Margin="0,70,0,0"
-            SelectionChanged="FontComboBox_SelectionChanged">
+            <Grid Margin="0,0,0,15">
 
+                <Grid.ColumnDefinitions>
 
-            <ComboBoxItem
-                Content="Arial"
-                FontFamily="Arial"
-                Style="{StaticResource NormalComboBoxItem}"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
 
-            <ComboBoxItem
-                Content="Calibri"
-                FontFamily="Calibri"
-                Style="{StaticResource NormalComboBoxItem}"/>
-
-            <ComboBoxItem
-                Content="Consolas"
-                FontFamily="Consolas"
-                Style="{StaticResource NormalComboBoxItem}"/>
-
-            <ComboBoxItem
-                Content="Times New Roman"
-                FontFamily="Times New Roman"
-                Style="{StaticResource NormalComboBoxItem}"/>
-
-            <ComboBoxItem
-                Content="Segoe UI"
-                FontFamily="Segoe UI"
-                Style="{StaticResource NormalComboBoxItem}"/>
-
-        </ComboBox>
+                </Grid.ColumnDefinitions>
 
 
-        <!-- ====================================== -->
-        <!-- SIZE FONT -->
-        <!-- ====================================== -->
-
-        <TextBlock
-            Text="Size Font"
-            Foreground="#F5F5F7"
-            FontSize="30"
-            FontStyle="Oblique"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Margin="0,115,0,0"/>
+                <TextBlock Grid.Column="0"
+                           Text="Clock Font"
+                           Foreground="#F5F5F7"
+                           FontSize="22"
+                           FontStyle="Oblique"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/>
 
 
-        <!-- Выбор размера -->
+                <ComboBox Grid.Column="1"
+                          x:Name="FontComboBox"
+                          Style="{StaticResource SettingsComboBox}"
+                          HorizontalAlignment="Right"
+                          SelectionChanged="FontComboBox_SelectionChanged">
 
-        <ComboBox
-            x:Name="FontComboBoxSize"
-            Style="{StaticResource SettingsComboBox}"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Margin="0,165,0,0"
-            SelectionChanged="FontComboBox_SelectionChangeSize">
+                    <ComboBoxItem Content="Arial"
+                                  FontFamily="Arial"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
+                    <ComboBoxItem Content="Calibri"
+                                  FontFamily="Calibri"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
-            <ComboBoxItem
-                Content="40"
-                Style="{StaticResource NormalComboBoxItem}"/>
+                    <ComboBoxItem Content="Consolas"
+                                  FontFamily="Consolas"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
-            <ComboBoxItem
-                Content="50"
-                Style="{StaticResource NormalComboBoxItem}"/>
+                    <ComboBoxItem Content="Times New Roman"
+                                  FontFamily="Times New Roman"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
-            <ComboBoxItem
-                Content="60"
-                Style="{StaticResource NormalComboBoxItem}"/>
+                    <ComboBoxItem Content="Segoe UI"
+                                  FontFamily="Segoe UI"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
-            <ComboBoxItem
-                Content="70"
-                Style="{StaticResource NormalComboBoxItem}"/>
+                </ComboBox>
 
-            <ComboBoxItem
-                Content="80"
-                Style="{StaticResource NormalComboBoxItem}"/>
-            
-            <ComboBoxItem
-                Content="90"
-                Style="{StaticResource NormalComboBoxItem}"/>
-            
-            <ComboBoxItem
-                Content="100"
-                Style="{StaticResource NormalComboBoxItem}"/>
-
-        </ComboBox>
+            </Grid>
 
 
-        <!-- ====================================== -->
-        <!-- FONT COLOR -->
-        <!-- ====================================== -->
+            <!-- ============================== -->
+            <!-- FONT SIZE -->
+            <!-- ============================== -->
 
-        <TextBlock
-            Text="Font Color"
-            Foreground="#F5F5F7"
-            FontSize="30"
-            FontStyle="Oblique"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Margin="0,210,0,0"/>
+            <Grid Margin="0,0,0,15">
 
+                <Grid.ColumnDefinitions>
 
-        <!-- Выбор цвета -->
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
 
-        <ComboBox
-            x:Name="FontComboBoxColor"
-            Style="{StaticResource SettingsComboBox}"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Margin="0,260,0,0"
-            SelectionChanged="FontComboBox_SelectionChangedColor">
+                </Grid.ColumnDefinitions>
 
 
-            <ComboBoxItem
-                Content="Black"
-                Foreground="Black"
-                Style="{StaticResource ColorComboBoxItem}"/>
+                <TextBlock Grid.Column="0"
+                           Text="Size Font"
+                           Foreground="#F5F5F7"
+                           FontSize="22"
+                           FontStyle="Oblique"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/>
 
-            <ComboBoxItem
-                Content="White"
-                Foreground="White"
-                Style="{StaticResource ColorComboBoxItem}"/>
 
-            <ComboBoxItem
-                Content="Red"
-                Foreground="Red"
-                Style="{StaticResource ColorComboBoxItem}"/>
+                <ComboBox Grid.Column="1"
+                          x:Name="FontComboBoxSize"
+                          Style="{StaticResource SettingsComboBox}"
+                          HorizontalAlignment="Right"
+                          SelectionChanged="FontComboBox_SelectionChangeSize">
 
-            <ComboBoxItem
-                Content="Orange"
-                Foreground="Orange"
-                Style="{StaticResource ColorComboBoxItem}"/>
+                    <ComboBoxItem Content="40"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
-            <ComboBoxItem
-                Content="Purple"
-                Foreground="Purple"
-                Style="{StaticResource ColorComboBoxItem}"/>
+                    <ComboBoxItem Content="50"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
-            <ComboBoxItem
-                Content="Pink"
-                Foreground="Pink"
-                Style="{StaticResource ColorComboBoxItem}"/>
+                    <ComboBoxItem Content="60"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
-            <ComboBoxItem
-                Content="Yellow"
-                Foreground="Yellow"
-                Style="{StaticResource ColorComboBoxItem}"/>
+                    <ComboBoxItem Content="70"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
-            <ComboBoxItem
-                Content="Green"
-                Foreground="Green"
-                Style="{StaticResource ColorComboBoxItem}"/>
+                    <ComboBoxItem Content="80"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
-        </ComboBox>
+                    <ComboBoxItem Content="90"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
 
-    </Grid>
+                    <ComboBoxItem Content="100"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
+
+                </ComboBox>
+
+            </Grid>
+
+
+            <!-- ============================== -->
+            <!-- FONT COLOR -->
+            <!-- ============================== -->
+
+            <Grid Margin="0,0,0,15">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <TextBlock Grid.Column="0"
+                           Text="Font Color"
+                           Foreground="#F5F5F7"
+                           FontSize="22"
+                           FontStyle="Oblique"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/>
+
+
+                <ComboBox Grid.Column="1"
+                          x:Name="FontComboBoxColor"
+                          Style="{StaticResource SettingsComboBox}"
+                          HorizontalAlignment="Right"
+                          SelectionChanged="FontComboBox_SelectionChangedColor">
+
+                    <ComboBoxItem Content="Black"
+                                  Foreground="Black"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+
+                    <ComboBoxItem Content="White"
+                                  Foreground="White"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+                    
+                    <ComboBoxItem Content="Gray"
+                                  Foreground="Gray"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+
+                    <ComboBoxItem Content="Red"
+                                  Foreground="Red"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+
+                    <ComboBoxItem Content="Orange"
+                                  Foreground="Orange"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+
+                    <ComboBoxItem Content="Purple"
+                                  Foreground="Purple"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+
+                    <ComboBoxItem Content="HotPink"
+                                  Foreground="HotPink"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+                    
+                    <ComboBoxItem Content="Pink"
+                                  Foreground="Pink"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+
+                    <ComboBoxItem Content="Yellow"
+                                  Foreground="Yellow"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+
+                    <ComboBoxItem Content="Green"
+                                  Foreground="Green"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+
+                    <ComboBoxItem Content="Blue"
+                                  Foreground="Blue"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+
+                    <ComboBoxItem Content="BlueViolet"
+                                  Foreground="BlueViolet"
+                                  Style="{StaticResource ColorComboBoxItem}"/>
+
+                </ComboBox>
+
+            </Grid>
+
+
+            <!-- ============================== -->
+            <!-- DATE CHECKBOX -->
+            <!-- ============================== -->
+
+            <CheckBox x:Name="CheckDate"
+                      Content="Date Hide"
+                      Foreground="White"
+                      Margin="0,5,0,0"
+                      HorizontalAlignment="Left"
+                      Checked="CheckVox_Checked"
+                      Unchecked="CheckBox_Unchecked"/>
+
+        </StackPanel>
+
+    </Border>
 
 </Window>

@@ -17,44 +17,72 @@ namespace ClockOnDesk
     {
         private void FontComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (mainWindow == null)
+                return;
+
+            if (FontComboBox.SelectedItem == null)
+                return;
+
             if (FontComboBox.SelectedItem is ComboBoxItem item)
             {
-                string font = item.Content.ToString();
+                string? font = item.Content.ToString();
 
-                MainWindow mainWindow = (MainWindow)Owner;
+
 
                 mainWindow.ChangeFont(font);
             }
         }
         private void FontComboBox_SelectionChangeSize(object sender, SelectionChangedEventArgs e)
         {
+            if (mainWindow == null)
+                return;
+
+           
+
             if (FontComboBoxSize.SelectedItem is ComboBoxItem item)
             {
                 if (double.TryParse(item.Content.ToString(), out double size))
                 {
-                    MainWindow mainWindow = (MainWindow)Owner;
 
-                    mainWindow.ChangeFontSize(size + 10);
+
+                    mainWindow.ChangeFontSize(size);
                 }
             }
         }
         private void FontComboBox_SelectionChangedColor(object sender, SelectionChangedEventArgs e)
         {
+
+            if (mainWindow == null)
+                return;
+
             if (FontComboBoxColor.SelectedItem is ComboBoxItem item)
             {
-                string color = item.Content.ToString();
-
-                MainWindow mainWindow = (MainWindow)Owner;
+                string? color = item.Content.ToString();
 
                 mainWindow.ChangeFontColor(color);
             }
         }
 
-        public SettingWindow()
+        private void CheckVox_Checked(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            mainWindow.Date.Visibility = Visibility.Collapsed;
+            CheckDate.IsChecked = true;
         }
 
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Date.Visibility = Visibility.Visible;
+            CheckDate.IsChecked = false;
+        }
+
+        private MainWindow mainWindow;
+
+        public SettingWindow(MainWindow mainWindow)
+        {
+            InitializeComponent();
+            this.mainWindow = mainWindow;
+           
+        }
 
     }
 }

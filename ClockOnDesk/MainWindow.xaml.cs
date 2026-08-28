@@ -44,6 +44,8 @@ namespace ClockOnDesk
             StartClock();
             SetPositionWindowInBounds();
 
+           
+
             //################
             //###################################################
             Loaded += (_, _) =>
@@ -60,6 +62,11 @@ namespace ClockOnDesk
             };
             //###################################################
             //################
+        }
+
+        public void SetSizePathBorder()
+        {
+           
         }
 
         private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
@@ -164,6 +171,8 @@ namespace ClockOnDesk
 
         public void ChangeFontSize(double size)
         {
+            
+
             if (size <= 0)
                 return;
 
@@ -244,11 +253,8 @@ namespace ClockOnDesk
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var settingsWindow = new SettingWindow
-            {
-                Owner = this
-            };
-            settingsWindow.ShowDialog();
+            SettingWindow windows = new SettingWindow(this);
+            windows.Show();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

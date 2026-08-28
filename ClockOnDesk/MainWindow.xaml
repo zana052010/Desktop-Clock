@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:ClockOnDesk"
         mc:Ignorable="d"
         Title="Settings"
-        Height="333"
-        Width="373"
+        Height="286"
+        Width="385"
         AllowsTransparency="True"
         WindowStyle="None"
         Background="Transparent"
@@ -15,13 +15,13 @@
         Opacity="0.97"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
-    <Grid MouseLeftButtonDown="Window_MouseLeftButtonDown" Margin="0,10,10,-20" RenderTransformOrigin="0.504,0.479">
+    <Grid MouseLeftButtonDown="Window_MouseLeftButtonDown" Margin="19,10,10,10" RenderTransformOrigin="0.504,0.479">
 
-
+      
 
         <StackPanel
             HorizontalAlignment="Center"
-            VerticalAlignment="Top" Height="auto" Width="auto" Margin="0,36,0,0">
+            VerticalAlignment="Center" Height="auto" Width="auto">
 
             <TextBlock
                 Name="Time"
@@ -55,6 +55,11 @@
             </Button>
 
         </StackPanel>
+
+
+       
+
+
 
 
 
