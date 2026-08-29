@@ -44,7 +44,7 @@ namespace ClockOnDesk
             StartClock();
             SetPositionWindowInBounds();
 
-           
+
 
             //################
             //###################################################
@@ -66,7 +66,7 @@ namespace ClockOnDesk
 
         public void SetSizePathBorder()
         {
-           
+
         }
 
         private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
@@ -74,22 +74,44 @@ namespace ClockOnDesk
             e.Cancel = true;
         }
 
+        /// <summary>
+        /// Создаёт FontFamily корректно и для системных, и для встроенных (Resource) шрифтов.
+        /// Встроенные шрифты должны храниться как "./Fonts/#Точное Внутреннее Имя".
+        /// Системные шрифты — просто их имя, например "Arial".
+        /// </summary>
+        private FontFamily CreateFontFamily(string font)
+        {
+            if (string.IsNullOrWhiteSpace(font))
+                return new FontFamily("Segoe UI");
+
+            if (font.Contains('#'))
+            {
+                // Кастомный шрифт, встроенный как Resource в сборку
+                return new FontFamily(new Uri("pack://application:,,,/"), font);
+            }
+
+            // Обычный системный шрифт
+            return new FontFamily(font);
+        }
 
         public void SetSettings()
         {
             try
             {
+                var family = CreateFontFamily(Properties.Settings.Default.Font);
+
                 Time.FontSize = Properties.Settings.Default.FontSize;
                 Time.Foreground = ParseBrushSafe(Properties.Settings.Default.FontColor);
-                Time.FontFamily = new FontFamily(Properties.Settings.Default.Font);
+                Time.FontFamily = family;
 
                 Date.FontSize = Properties.Settings.Default.FontSize / 3;
                 Date.Foreground = ParseBrushSafe(Properties.Settings.Default.FontColor);
-                Date.FontFamily = new FontFamily(Properties.Settings.Default.Font);
+                Date.FontFamily = family;
+
 
                 this.Left = Properties.SettingsPosition.Default.Left;
                 this.Top = Properties.SettingsPosition.Default.Top;
-                
+
 
             }
             catch (Exception ex)
@@ -171,8 +193,6 @@ namespace ClockOnDesk
 
         public void ChangeFontSize(double size)
         {
-            
-
             if (size <= 0)
                 return;
 
@@ -216,8 +236,10 @@ namespace ClockOnDesk
             if (string.IsNullOrWhiteSpace(font))
                 return;
 
-            Time.FontFamily = new FontFamily(font);
-            Date.FontFamily = new FontFamily(font);
+            var family = CreateFontFamily(font);
+
+            Time.FontFamily = family;
+            Date.FontFamily = family;
 
             Properties.Settings.Default.Font = font;
             Properties.Settings.Default.Save();

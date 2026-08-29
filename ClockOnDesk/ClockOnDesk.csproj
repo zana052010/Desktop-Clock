@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>
@@ -7,17 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-
   <ItemGroup>
-    <None Remove="Image\settings.png" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Resource Include="Fonts\*.ttf" />
     <Resource Include="Image\settings.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -30,7 +24,6 @@
       <DependentUpon>SettingsPosition.settings</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -41,5 +34,4 @@
       <LastGenOutput>SettingsPosition.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-
 </Project>

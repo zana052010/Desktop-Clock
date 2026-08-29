@@ -161,24 +161,61 @@
                           HorizontalAlignment="Right"
                           SelectionChanged="FontComboBox_SelectionChanged">
 
+                    <!-- Системные шрифты: Tag = просто имя шрифта -->
+
                     <ComboBoxItem Content="Arial"
+                                  Tag="Arial"
                                   FontFamily="Arial"
                                   Style="{StaticResource NormalComboBoxItem}"/>
 
                     <ComboBoxItem Content="Calibri"
+                                  Tag="Calibri"
                                   FontFamily="Calibri"
                                   Style="{StaticResource NormalComboBoxItem}"/>
 
                     <ComboBoxItem Content="Consolas"
+                                  Tag="Consolas"
                                   FontFamily="Consolas"
                                   Style="{StaticResource NormalComboBoxItem}"/>
 
                     <ComboBoxItem Content="Times New Roman"
+                                  Tag="Times New Roman"
                                   FontFamily="Times New Roman"
                                   Style="{StaticResource NormalComboBoxItem}"/>
 
                     <ComboBoxItem Content="Segoe UI"
+                                  Tag="Segoe UI"
                                   FontFamily="Segoe UI"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
+
+                    <!--
+                        Кастомные (встроенные) шрифты: Tag = "./Fonts/#Точное Внутреннее Имя".
+                        ВАЖНО: имя после # должно СОВПАДАТЬ с реальным внутренним именем шрифта
+                        (см. окно просмотра шрифта в проводнике Windows), а не с именем файла.
+                        Ниже проставлено то, что подтверждено скриншотом (DotumChe).
+                        Для KoblenzShadow и Gyrfalcon 3D / Motrhead Grotesk — проверьте и
+                        подставьте настоящее внутреннее имя вместо плейсхолдера.
+                    -->
+
+                    <ComboBoxItem Content="KoblenzShadow"
+                                  Tag="./Fonts/#KoblenzShadow"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
+
+                    <ComboBoxItem Content="Gyrfalcon 3D"
+                                  Tag="./Fonts/#Gyrfalcon 3D"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
+
+                    <ComboBoxItem Content="DotumChe"
+                                  Tag="./Fonts/#DotumChe RUS BY hidsky"
+                                  FontFamily="./Fonts/#DotumChe RUS BY hidsky"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
+
+                    <ComboBoxItem Content="Gilligan"
+                                  Tag="./Fonts/#Gilligans Island"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
+
+                    <ComboBoxItem Content="GarryMondrianCond4 BookSH"
+                                  Tag="./Fonts/#GarryMondrianCond4"
                                   Style="{StaticResource NormalComboBoxItem}"/>
 
                 </ComboBox>
@@ -236,6 +273,19 @@
                     <ComboBoxItem Content="100"
                                   Style="{StaticResource NormalComboBoxItem}"/>
 
+                    <ComboBoxItem Content="110"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
+
+                    <ComboBoxItem Content="120"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
+
+                    <ComboBoxItem Content="130"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
+
+                    <ComboBoxItem Content="140"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
+                    <ComboBoxItem Content="150"
+                                  Style="{StaticResource NormalComboBoxItem}"/>
                 </ComboBox>
 
             </Grid>
@@ -277,7 +327,7 @@
                     <ComboBoxItem Content="White"
                                   Foreground="White"
                                   Style="{StaticResource ColorComboBoxItem}"/>
-                    
+
                     <ComboBoxItem Content="Gray"
                                   Foreground="Gray"
                                   Style="{StaticResource ColorComboBoxItem}"/>
@@ -297,7 +347,7 @@
                     <ComboBoxItem Content="HotPink"
                                   Foreground="HotPink"
                                   Style="{StaticResource ColorComboBoxItem}"/>
-                    
+
                     <ComboBoxItem Content="Pink"
                                   Foreground="Pink"
                                   Style="{StaticResource ColorComboBoxItem}"/>

@@ -25,11 +25,12 @@ namespace ClockOnDesk
 
             if (FontComboBox.SelectedItem is ComboBoxItem item)
             {
-                string? font = item.Content.ToString();
+                // Берём Tag, а не Content: Content — это то, что видит пользователь
+                // в списке, а Tag содержит реальный путь/имя FontFamily.
+                string? font = item.Tag?.ToString();
 
-
-
-                mainWindow.ChangeFont(font);
+                if (!string.IsNullOrWhiteSpace(font))
+                    mainWindow.ChangeFont(font);
             }
         }
         private void FontComboBox_SelectionChangeSize(object sender, SelectionChangedEventArgs e)
@@ -37,7 +38,7 @@ namespace ClockOnDesk
             if (mainWindow == null)
                 return;
 
-           
+
 
             if (FontComboBoxSize.SelectedItem is ComboBoxItem item)
             {
@@ -81,7 +82,7 @@ namespace ClockOnDesk
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
-           
+
         }
 
     }
